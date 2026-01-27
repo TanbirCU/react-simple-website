@@ -1,9 +1,12 @@
 import './page.css';
+import Slider from '../components/Slider/Slider.jsx';
+import CardSection from '../components/CardSection/CardSection.jsx';
 const Home = () => {
     return (
         <div>
-            <h1>Welcome to My Simple React Website</h1>
-            <p>This is the home page. Use the navigation bar to explore different sections of the website.</p>
+            <Slider />
+            <CardSection />
+            
         </div>
     );
 }

@@ -1,0 +1,15 @@
+.slider {
+  width: 100vw;
+  height: 300px;
+  background: linear-gradient(135deg, #38bdf8, #0f172a);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
