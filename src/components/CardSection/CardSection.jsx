@@ -29,10 +29,7 @@ const CardSection = () => {
         <h3>Modern</h3>
         <p>Uses modern JavaScript and UI patterns.</p>
       </div>
-      <div className="card">
-        <h3>Modern</h3>
-        <p>Uses modern JavaScript and UI patterns.</p>
-      </div>
+      
     </div>
   );
 };
