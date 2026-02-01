@@ -1,10 +1,23 @@
 
 import './Page.css';
+import Slider from '../components/Slider/Slider.jsx';
+import WhoWeAre from '../components/About/WhoWeAre.jsx';
+import MissionVision from '../components/About/MissionVision.jsx';
+import WhatWeDo from '../components/About/WhatWeDo.jsx';
+import WhyChooseUs from '../components/About/WhyChooseUs.jsx';
+import Stats from '../components/About/Stats.jsx';
+import AboutCTA from '../components/About/AboutCTA.jsx';
 const About = () => {
     return (
         <div>
-            <h1>About This Website</h1>
-            <p>This website is built using React and demonstrates a simple multi-page layout with navigation.</p>
+            <Slider />
+            <WhoWeAre />
+            <MissionVision />
+            <WhatWeDo />
+            <WhyChooseUs />
+            <Stats />
+            <AboutCTA />
+
         </div>
     );
 }

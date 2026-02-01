@@ -1,9 +1,16 @@
 import './page.css';
+import '../components/Contact/Contact.css';
+import ContactSlider from '../components/Contact/ContactSlider.jsx';
+import ContactInfo from '../components/Contact/ContactInfo.jsx';
+import ContactForm from '../components/Contact/ContactForm.jsx';
+import ContactCTA from '../components/Contact/ContactCTA.jsx';
 const Contact = () => {
     return (    
-        <div>
-            <h1>Contact Us</h1>
-            <p>This is the contact page. Feel free to reach out!</p>
+        <div className="contact-page">
+             <ContactSlider />
+            <ContactInfo />
+            <ContactForm />
+            <ContactCTA />
         </div>
     );
 }
