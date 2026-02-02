@@ -1,10 +1,14 @@
 
+import PostForm from '../components/post/PostForm';
+import PostInfo from '../components/post/PostInfo';
+import PostSlider from '../components/post/PostSlider';
 import './Page.css';
 const AddPost = () => {
     return (
         <div>
-            <h1>Add New Post</h1>
-            <p>This is the add post page.</p>
+            <PostSlider />
+            <PostForm />
+            <PostInfo />
         </div>
     );
 }

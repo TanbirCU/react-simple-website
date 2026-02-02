@@ -1,0 +1,35 @@
+.post-slider {
+  background: linear-gradient(to right, #2563eb, #1e40af);
+  color: white;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.post-form-wrapper {
+  padding: 40px 20px;
+}
+
+.post-form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.post-form input,
+.post-form select,
+.post-form textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.post-form button {
+  background: #2563eb;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
