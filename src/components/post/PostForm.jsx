@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./post.css";
+import {useRef} from "react";
 
 const PostForm = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,9 @@ const PostForm = () => {
     image: null,
     file: null,
   });
-
+  const imageInputRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const [success, setSuccess] = useState("");
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData({
@@ -20,6 +23,7 @@ const PostForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
 
     const data = new FormData();
@@ -27,16 +31,26 @@ const PostForm = () => {
       data.append(key, formData[key]);
     });
 
-    await fetch("http://127.0.0.1:8000/api/posts", {
+    await fetch("https://ieltsmaster.test/api/post_store", {
       method: "POST",
       body: data,
     });
+    
+    setSuccess("Post added successfully!");
+    setFormData({
+      title: "",
+      age: "",
+      category: "",
+      description: "",
+      image: null,
+      file: null,
+    });
 
-    alert("Post added successfully");
   };
 
   return (
     <section className="post-form-wrapper">
+      {success && <p className="success-message">{success}</p>}
       <form className="post-form" onSubmit={handleSubmit}>
         <h2>Create Post</h2>
 
@@ -44,6 +58,7 @@ const PostForm = () => {
           type="text"
           name="title"
           placeholder="Post Title"
+          value={formData.title}
           onChange={handleChange}
           required
         />
@@ -52,10 +67,11 @@ const PostForm = () => {
           type="number"
           name="age"
           placeholder="Age"
+          value={formData.age}
           onChange={handleChange}
         />
 
-        <select name="category" onChange={handleChange}>
+        <select name="category" onChange={handleChange} value={formData.category}>
           <option value="">Select Category</option>
           <option value="tech">Tech</option>
           <option value="education">Education</option>
@@ -66,6 +82,7 @@ const PostForm = () => {
           name="description"
           placeholder="Post Description"
           rows="4"
+          value={formData.description}
           onChange={handleChange}
         ></textarea>
 
@@ -73,12 +90,14 @@ const PostForm = () => {
           type="file"
           name="image"
           accept="image/*"
+          ref={imageInputRef}
           onChange={handleChange}
         />
 
         <input
           type="file"
           name="file"
+          ref={fileInputRef}
           onChange={handleChange}
         />
 
