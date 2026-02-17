@@ -24,6 +24,7 @@ const EditPost = () => {
     fetch(`https://ieltsmaster.test/api/post-edit/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const post = data.data;
         setFormData({
           title: post.title,
@@ -55,19 +56,38 @@ const EditPost = () => {
     e.preventDefault();
 
     const data = new FormData();
+    data.append("_method", "PUT");
     Object.keys(formData).forEach((key) => {
       if (formData[key] !== null) {
         data.append(key, formData[key]);
       }
     });
 
-    await fetch(`https://ieltsmaster.test/api/post_update/${id}`, {
-      method: "POST",
-      body: data,
-    });
+    console.log("Sending FormData:", data);
 
-    alert("Post updated successfully");
-    navigate("/posts");
+    try {
+      const response = await fetch(`https://ieltsmaster.test/api/post_update/${id}`, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')?.getAttribute("content") || "",
+        },
+        body: data,
+      });
+
+      const result = await response.json();
+      console.log("Response:", result);
+
+      if (response.ok) {
+        alert("Post updated successfully");
+        navigate("/post-list");
+      } else {
+        alert("Failed to update post: " + (result.message || "Unknown error"));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error updating post");
+    }
   };
 
   return (
@@ -126,7 +146,13 @@ const EditPost = () => {
         )}
 
         <input type="file" name="image" onChange={handleChange} />
-        <input type="file" name="file"   onChange={handleChange} />
+
+        {/* OLD FILE */}
+        {oldFile && (
+          <p>Current File: <strong>{oldFile}</strong></p>
+        )}
+
+        <input type="file" name="file"    onChange={handleChange} />
 
         <button type="submit">Update Post</button>
       </form>
