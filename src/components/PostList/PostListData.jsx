@@ -15,7 +15,9 @@ const PostListData = () => {
   useEffect(() => {
     fetchPosts();
   }, []);
-
+  const handleEdit = (id) => {
+    window.location.href = `/post-edit/${id}`;
+  }
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this post?")) return;
 

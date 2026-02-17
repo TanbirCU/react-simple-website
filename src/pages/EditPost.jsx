@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "../styles/post-form.css";
+// import "../styles/post-form.css";
 
 const EditPost = () => {
   const { id } = useParams();
@@ -17,10 +17,11 @@ const EditPost = () => {
 
   const [imagePreview, setImagePreview] = useState(null);
   const [oldImage, setOldImage] = useState(null);
+  const [oldFile, setOldFile] = useState(null);
 
   // fetch single post
   useEffect(() => {
-    fetch(`https://ieltsmaster.test/api/post_edit/${id}`)
+    fetch(`https://ieltsmaster.test/api/post-edit/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const post = data.data;
@@ -30,9 +31,10 @@ const EditPost = () => {
           category: post.category,
           description: post.description,
           image: null,
-          file: null,
+          file: post.file,
         });
         setOldImage(post.image);
+        setOldFile(post.file);
       });
   }, [id]);
 
@@ -78,6 +80,7 @@ const EditPost = () => {
           name="title"
           value={formData.title}
           onChange={handleChange}
+          placeholder="Title"
           required
         />
 
@@ -86,6 +89,7 @@ const EditPost = () => {
           name="age"
           value={formData.age}
           onChange={handleChange}
+          placeholder="Age"
         />
 
         <select
@@ -104,6 +108,7 @@ const EditPost = () => {
           rows="4"
           value={formData.description}
           onChange={handleChange}
+          placeholder="Description"
         />
 
         {/* OLD IMAGE */}
@@ -121,7 +126,7 @@ const EditPost = () => {
         )}
 
         <input type="file" name="image" onChange={handleChange} />
-        <input type="file" name="file" onChange={handleChange} />
+        <input type="file" name="file"   onChange={handleChange} />
 
         <button type="submit">Update Post</button>
       </form>

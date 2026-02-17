@@ -23,9 +23,7 @@ const PostForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault();
-
     const data = new FormData();
     Object.keys(formData).forEach((key) => {
       data.append(key, formData[key]);

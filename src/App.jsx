@@ -7,6 +7,7 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import AddPost from './pages/AddPost.jsx'
 import PostList from './pages/PostList.jsx'
+import EditPost from './pages/EditPost.jsx'
 
 import './App.css'
 
@@ -20,6 +21,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/add-post" element={<AddPost />} />
           <Route path="/post-list" element={<PostList />} />
+          <Route path="/post-edit/:id" element={<EditPost  />} />
+
         </Routes>
 
         <Footer />
